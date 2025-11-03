@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TrendStar Afrique — Gagne avec ton téléphone</title>
+<style>
+  :root{
+    --orange:#FF7A00;
+    --sky:#00AEEF;
+    --bg:#F8F8F8;
+    --text:#0b1220;
+    --card:#ffffff;
+    --accent:#ffc49a;
+    --radius:14px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  body{ 
+    margin:0; 
+    background:linear-gradient(180deg,var(--bg),#ffffff); 
+    color:var(--text);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 122, 0, 0.1);
+    border-radius: 50%;
+    animation: float 25s infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.5;
+    }
+    90% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100vh) translateX(50px);
+      opacity: 0;
+    }
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+  }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 20px; background:linear-gradient(90deg,var(--orange),var(--sky));
+    color:white; position:sticky; top:0; z-index:20;
+    box-shadow:0 4px 18px rgba(11,18,32,0.12);
+    animation: slideDown 0.6s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .logo{ 
+    display:flex; gap:12px; align-items:center; font-weight:700; 
+    animation: fadeInLeft 0.8s ease-out;
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .logo .dot{ 
+    width:48px; height:48px; border-radius:10px; 
+    background:radial-gradient(circle at 30% 30%,#fff6e9,#ffefdc 35%, rgba(255,255,255,0.08) 36%); 
+    display:flex; align-items:center; justify-content:center; 
+    color:var(--orange); font-weight:800; font-size: 14px;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  nav{ 
+    display:flex; gap:14px; align-items:center; 
+    animation: fadeInRight 0.8s ease-out;
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  nav a{ 
+    color:white; text-decoration:none; font-weight:600; 
+    padding:8px 12px; border-radius:8px;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 13px;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  nav a:hover{ 
+    background:rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+  }
+
+  .hero{ 
+    max-width:1100px; margin:28px auto; padding:28px; 
+    display:grid; grid-template-columns:1fr 420px; gap:22px; 
+    align-items:center;
+    animation: fadeUp 0.8s ease-out 0.2s both;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card{ 
+    background:var(--card); border-radius:var(--radius); 
+    padding:18px; box-shadow:0 8px 30px rgba(11,18,32,0.06);
+    transition: all 0.3s ease;
+    animation: cardAppear 0.6s ease-out;
+  }
+
+  @keyframes cardAppear {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(11,18,32,0.12);
+  }
+
+  .headline{ 
+    font-size:24px; font-weight:800; margin-bottom:6px; 
+    color:var(--text);
+    animation: slideInLeft 0.6s ease-out 0.3s both;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .sub{ 
+    color:#314154; margin-bottom:12px; line-height: 1.6;
+    animation: fadeIn 0.6s ease-out 0.4s both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .cta{ 
+    display:flex; gap:12px; margin-top:12px; align-items:center; flex-wrap: wrap;
+    animation: slideUp 0.6s ease-out 0.5s both;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-wa, .btn-join, .nav-btn {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 14px;
+  }
+
+  .btn-wa{
+    background:linear-gradient(90deg,#00b894,#00d39b);
+    color:white; padding:12px 16px; border-radius:12px; 
+    font-weight:800; text-decoration:none;
+    box-shadow:0 8px 18px rgba(0,0,0,0.12);
+    display: inline-block;
+  }
+
+  .btn-wa::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #00d39b, #00b894);
+    z-index: -1;
+    transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .btn-wa:hover::before {
+    left: 0;
+  }
+
+  .btn-wa:hover {
+    transform: scale(1.08) translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0, 184, 148, 0.35);
+  }
+
+  .btn-wa:active {
+    transform: scale(0.96);
+  }
+
+  .btn-join{ 
+    background:linear-gradient(90deg,var(--orange),#ff945a); 
+    color:white; padding:10px 14px; border-radius:12px; 
+    font-weight:700; text-decoration:none;
+    box-shadow: 0 6px 12px rgba(255, 122, 45, 0.2);
+    display: inline-block;
+  }
+
+  .btn-join::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s ease-out;
+  }
+
+  .btn-join:hover::after {
+    width: 400px;
+    height: 400px;
+  }
+
+  .btn-join:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(255, 122, 45, 0.3);
+  }
+
+  .btn-join:active {
+    transform: scale(0.98);
+  }
+
+  .nav-btn {
+    background:transparent; 
+    border:1px solid rgba(11,18,32,0.06); 
+    padding:8px 10px; border-radius:8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, var(--orange), var(--sky));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-btn:hover::before {
+    opacity: 0.1;
+  }
+
+  .nav-btn:hover {
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 122, 45, 0.1);
+  }
+
+  .nav-btn:active {
+    transform: scale(0.95);
+  }
+
+  .info-list{ 
+    display:grid; gap:8px; margin-top:8px;
+    animation: staggerIn 0.8s ease-out 0.6s both;
+  }
+
+  @keyframes staggerIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .info-item{ 
+    display:flex; gap:12px; align-items:flex-start;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .info-item:hover {
+    transform: translateX(8px);
+    background: rgba(255, 122, 0, 0.05);
+  }
+
+  .img-stack{ 
+    border-radius:12px; overflow:hidden; 
+    height:100%;
+    animation: slideInRight 0.8s ease-out 0.4s both;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .img-stack img{ 
+    display:block; width:100%; height:100%; 
+    object-fit:cover;
+    transition: transform 0.4s ease;
+  }
+
+  .img-stack:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery{ 
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 0.5fr)); 
+    gap:8px; margin-top:14px;
+    animation: fadeIn 0.4s ease-out 0.2s both;
+  }
+
+  .thumb{ 
+    border-radius:10px; overflow:hidden; 
+    cursor:pointer; 
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border:2px solid rgba(11,18,32,0.04);
+  }
+
+  .thumb:hover{ 
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:0 16px 40px rgba(11,18,32,0.15);
+    border-color: var(--orange);
+  }
+
+  .thumb img {
+    transition: filter 0.3s ease;
+  }
+
+  .thumb:hover img {
+    filter: brightness(1.1);
+  }
+
+  footer{ 
+    text-align:center; padding:18px; 
+    color:#6b7785; font-size:14px;
+    animation: fadeIn 0.8s ease-out 1s both;
+  }
+
+  .modal{ 
+    position:fixed; inset:0; display:none; 
+    align-items:center; justify-content:center; 
+    z-index:50; background:rgba(6,12,20,0.65);
+    animation: fadeIn 0.3s ease-out;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal.show{ 
+    display:flex;
+  }
+
+  .modal-card{ 
+    width:92%; max-width:720px; background:white; 
+    border-radius:12px; overflow:hidden;
+    animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 20px 60px rgba(11,18,32,0.3);
+  }
+
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .modal-card img{ 
+    width:100%; display:block;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .modal-footer{ 
+    display:flex; justify-content:space-between; 
+    gap:8px; padding:12px; flex-wrap: wrap;
+  }
+
+  .close-btn{ 
+    background:#eee; padding:8px 12px; 
+    border-radius:8px; cursor:pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-weight: 600;
+  }
+
+  .close-btn:hover {
+    background: var(--orange);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .close-btn:active {
+    transform: scale(0.95);
+  }
+
+  .tag{ 
+    display:inline-block; padding:6px 10px; 
+    border-radius:999px; 
+    background:linear-gradient(90deg,#fff3e8,#ffe9d6); 
+    color:var(--orange); font-weight:700; 
+    margin-right:8px;
+    transition: all 0.3s ease;
+    font-size: 12px;
+  }
+
+  .tag:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
+  }
+
+  .menu-row{ 
+    display:flex; gap:8px; align-items:center; 
+    margin-top:8px;
+    animation: slideUp 0.6s ease-out 0.5s both;
+    flex-wrap: wrap;
+  }
+
+  section.card {
+    animation: fadeUp 0.6s ease-out both;
+  }
+
+  section.card:nth-of-type(2) { animation-delay: 0.3s; }
+  section.card:nth-of-type(3) { animation-delay: 0.4s; }
+  section.card:nth-of-type(4) { animation-delay: 0.5s; }
+  section.card:nth-of-type(5) { animation-delay: 0.6s; }
+
+  .muted{ color:#51606a; }
+
+  h2 {
+    animation: slideInLeft 0.6s ease-out;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  ol, ul {
+    animation: staggerIn 0.8s ease-out;
+    line-height: 1.8;
+  }
+
+  ol li, ul li {
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
+    padding-left: 6px;
+  }
+
+  ol li:hover, ul li:hover {
+    transform: translateX(8px);
+    color: var(--orange);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .feature-card {
+    background: linear-gradient(135deg, rgba(255,122,0,0.05), rgba(0,174,239,0.05));
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,122,0,0.1);
+    transition: all 0.3s ease;
+    animation: fadeUp 0.6s ease-out;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--orange);
+    box-shadow: 0 12px 24px rgba(255,122,0,0.15);
+  }
+
+  .feature-card h3 {
+    margin: 0 0 8px 0;
+    color: var(--orange);
+    font-size: 16px;
+  }
+
+  .feature-card p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .affiliation-box {
+    background: linear-gradient(135deg, rgba(255,122,0,0.1), rgba(0,174,239,0.1));
+    border-left: 4px solid var(--orange);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .affiliation-item {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    align-items: center;
+  }
+
+  .affiliation-icon {
+    font-size: 20px;
+    color: var(--orange);
+  }
+
+  @media(max-width:920px){
+    .hero{ grid-template-columns:1fr; padding:14px; }
+    nav{ display:none; }
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media(max-width:600px){
+    header { padding: 14px 12px; }
+    .logo { font-size: 14px; }
+    .headline { font-size: 18px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<header>
+  <div class="logo" aria-hidden="true">
+    <div class="dot">TS</div>
+    <div>
+      <div style="font-size:18px">TrendStar</div>
+      <div style="font-size:12px; opacity:.9">Gagne avec ton téléphone</div>
+    </div>
+  </div>
+
+  <nav aria-label="Navigation principale">
+    <a href="#comment">Comment ça marche</a>
+    <a href="#affiliation">Affiliation</a>
+    <a href="#formations">Formations</a>
+    <a href="#premium">Premium</a>
+  </nav>
+</header>
+
+<main>
+    <style>
+        :root {
+          --orange: #ff7a00;
+          --sky: #00baff;
+        }
+      
+        /* SECTION PRINCIPALE */
+        .hero {
+          display: flex;
+          justify-content: center;
+          align-items: stretch;
+          gap: 20px;
+          flex-wrap: wrap;
+          padding: 30px;
+          max-width: 1100px;
+          margin: auto;
+        }
+      
+        .hero .card {
+          flex: 1 1 500px;
+          background: #fff;
+          border-radius: 16px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+          padding: 25px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      
+        .hero .headline {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: var(--orange);
+          margin-bottom: 10px;
+        }
+      
+        .hero .sub {
+          font-size: 1rem;
+          color: #555;
+          margin-bottom: 20px;
+          line-height: 1.6;
+        }
+      
+        .menu-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+      
+        .nav-btn {
+          background: var(--orange);
+          color: #fff;
+          border: none;
+          padding: 10px 14px;
+          border-radius: 10px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: 0.3s;
+        }
+      
+        .nav-btn:hover {
+          background: var(--sky);
+        }
+      
+        .info-list {
+          margin-bottom: 20px;
+        }
+      
+        .info-item {
+          margin-bottom: 8px;
+        }
+      
+        .tag {
+          display: inline-block;
+          background: var(--sky);
+          color: #fff;
+          padding: 4px 8px;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          margin-right: 8px;
+        }
+      
+        .cta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+      
+        .btn-wa, .btn-join {
+          flex: 1;
+          text-align: center;
+          text-decoration: none;
+          background: var(--orange);
+          color: white;
+          padding: 12px;
+          border-radius: 12px;
+          font-weight: 600;
+          transition: 0.3s;
+        }
+      
+        .btn-join {
+          background: var(--sky);
+        }
+      
+        .btn-wa:hover, .btn-join:hover {
+          opacity: 0.9;
+        }
+      
+        /* IMAGE À CÔTÉ DU TEXTE */
+        .img-stack {
+          flex: 1 1 500px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(120deg, #fff8f1, #e6f8ff);
+          border-radius: 16px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+          overflow: hidden;
+        }
+      
+        .img-stack img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 16px;
+        }
+      
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+          .hero {
+            flex-direction: column;
+            align-items: center;
+          }
+      
+          .img-stack, .hero .card {
+            flex: 1 1 100%;
+            max-width: 100%;
+          }
+        }
+      </style>
+      
+      <section class="hero" id="top">
+        <div class="card">
+          <div class="headline">💸 Gagne de l'argent en ligne depuis ton téléphone</div>
+          <p class="sub">
+            Tu démarres avec <strong>4 000 FCFA</strong>, tu fais de simples tâches digitales, 
+            et tu gagnes de l'argent chaque semaine. Paiement via Orange Money, Wave, Move Money, 
+            MTN Money, Airtel Money, Flooz, etc.
+          </p>
+      
+          <div class="menu-row">
+            <button class="nav-btn" onclick="scrollToId('comment')">Comment ça marche</button>
+            <button class="nav-btn" onclick="scrollToId('affiliation')">Plan d'affiliation</button>
+            <button class="nav-btn" onclick="scrollToId('formations')">Formations</button>
+          </div>
+      
+          <div class="info-list">
+            <div class="info-item"><strong class="tag">Démarrage</strong> <strong>4 000 FCFA</strong> — paiement unique d'activation</div>
+            <div class="info-item"><strong class="tag">Paiement</strong> Automatique via Orange Money, Wave, Move Money</div>
+            <div class="info-item"><strong class="tag">Disponible</strong> Côte d'Ivoire, Cameroun, Sénégal, Mali, Togo, Bénin, Burkina Faso, Gabon, Congo, Kenya, Ghana, Tanzanie, Ouganda</div>
+          </div>
+      
+          <div class="cta">
+            <a id="waLinkTop" class="btn-wa" href="https://wa.me/237657554642" target="_blank" rel="noopener">📲 Commencer maintenant</a>
+            <a class="btn-join" href="#comment" onclick="scrollToId('comment')">Voir comment ça marche</a>
+          </div>
+        </div>
+      
+        <aside class="img-stack" aria-label="Image de la plateforme">
+          <img id="image-platform" src="promo.jpg" alt="Image de la plateforme TrendStar" />
+        </aside>
+      </section>
+      
+
+  <!-- COMMENT CA FONCTIONNE -->
+  <section class="card" id="comment" style="max-width:1100px;margin:18px auto;padding:20px;">
+    <h2 style="margin:0 0 8px 0">⚙️ Comment ça fonctionne</h2>
+    <p class="muted">Processus simple en 3 étapes : inscription → tâches → paiement automatique</p>
+
+    <ol style="margin-top:12px;">
+      <li><strong>1️⃣ Inscris-toi sur TrendStar</strong> : clique sur le bouton WhatsApp pour recevoir le lien officiel et le guide d'inscription.</li>
+      <li><strong>2️⃣ Effectue des mini-tâches digitales</strong> : partages, visionnages, recommandations et bien d'autres tâches simples depuis ton téléphone.</li>
+      <li><strong>3️⃣ Encaisse tes gains automatiquement</strong> : une fois le seuil atteint, la plateforme déclenche le paiement sur ton portefeuille mobile.</li>
+    </ol>
+
+    <div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap">
+      <a class="btn-join" href="#affiliation" onclick="scrollToId('affiliation')">Voir le plan d'affiliation</a>
+      <a class="btn-wa" href="https://wa.me/237657554642" target="_blank" rel="noopener">Contact WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- PLAN D'AFFILIATION -->
+  <section class="card" id="affiliation" style="max-width:1100px;margin:18px auto;padding:20px;">
+    <h2 style="margin:0 0 8px 0">💰 Plan d'affiliation</h2>
+    <p class="muted">Ton équipe te rapporte de l'argent même pendant ton sommeil !</p>
+
+    <div class="affiliation-box">
+      <div class="affiliation-item">
+        <span class="affiliation-icon">🔸</span>
+        <div><strong>Niveau 1 :</strong> 2 000 FCFA par filleul direct</div>
+      </div>
+      <div class="affiliation-item">
+        <span class="affiliation-icon">🔹</span>
+        <div><strong>Niveau 2 :</strong> 800 FCFA par filleul de ton filleul</div>
+      </div>
+      <div class="affiliation-item">
+        <span class="affiliation-icon">🔸</span>
+        <div><strong>Niveau 3 :</strong> 400 FCFA sur les affiliés du niveau 3</div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px; padding: 12px; background: rgba(255,122,0,0.05); border-radius: 8px; border-left: 3px solid var(--orange);">
+      💬 <strong>Gagne passivement :</strong> Chaque personne que tu parraines te rapporte de l'argent, et chaque personne qu'elle parraine aussi ! C'est un revenu continu qui grandit avec ton réseau.
+    </p>
+
+    <div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap">
+      <a class="btn-wa" href="https://wa.me/237657554642" target="_blank" rel="noopener">Je veux démarrer maintenant</a>
+      <a class="btn-join" href="#formations" onclick="scrollToId('formations')">Voir les formations</a>
+    </div>
+  </section>
+
+  <!-- FORMATIONS -->
+  <section class="card" id="formations" style="max-width:1100px;margin:18px auto;padding:20px;">
+    <h2 style="margin:0 0 8px 0">🎓 Formations offertes (15+)</h2>
+    <p class="muted">En rejoignant TrendStar, tu accèdes à plus de 14 formations digitales premium. Apprends, applique, et gagne depuis ton téléphone.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>🌐 Commerce Chine–Afrique</h3>
+        <p>Importe depuis Alibaba et vends localement</p>
+      </div>
+      <div class="feature-card">
+        <h3>🪙 Crypto & NFT</h3>
+        <p>Les bases de la blockchain et des actifs numériques</p>
+      </div>
+      <div class="feature-card">
+        <h3>📦 Dropshipping & E-commerce</h3>
+        <p>Crée une boutique en ligne sans stock</p>
+      </div>
+      <div class="feature-card">
+        <h3>🎬 Création de comptes monétisés</h3>
+        <p>YouTube, TikTok, Instagram pour gagner</p>
+      </div>
+      <div class="feature-card">
+        <h3>🤖 Intelligence artificielle</h3>
+        <p>ChatGPT et automatisation pour business digital</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛒 Boutique Shopify</h3>
+        <p>Créer et gérer ta boutique en ligne professionnelle</p>
+      </div>
+      <div class="feature-card">
+        <h3>📢 Marketing d'affiliation</h3>
+        <p>Techniques éprouvées pour générer des revenus passifs</p>
+      </div>
+      <div class="feature-card">
+        <h3>📈 Trading pour débutants</h3>
+        <p>Investissements intelligents et stratégies</p>
+      </div>
+      <div class="feature-card">
+        <h3>🗣️ Apprendre l'anglais</h3>
+        <p>Maîtrise l'anglais facilement et rapidement</p>
+      </div>
+      <div class="feature-card">
+        <h3>⏰ Productivité & Business</h3>
+        <p>Organise ton temps et développe ton business</p>
+      </div>
+      <div class="feature-card">
+        <h3>🎥 TikTok Monetization</h3>
+        <p>Crée du contenu viral et monétise tes vidéos</p>
+      </div>
+      <div class="feature-card">
+        <h3>🤖 Automatisation ChatGPT</h3>
+        <p>Automatise tes taches avec l'IA</p>
+
+        </div>
+    </div>
+    <div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap">
+      <a class="btn-wa" href="https://wa.me/237657554642" target="_blank" rel="noopener">Accéder aux formations</a>
+      <a class="btn-join" href="#premium" onclick="scrollToId('premium')">Voir l'offre Premium</a>
+    </div>
+    </section>
+    <!-- PREMIUM SECTION -->
+    <section class="card" id="premium" style="max-width:1100px;margin:18px auto;padding:20px;">
+      <h2 style="margin:0 0 8px 0">⭐ Offre Premium</h2>
+      <p class="muted">Passe au niveau supérieur avec TrendStar Premium. Accès exclusif à des outils avancés, formations supplémentaires, et support prioritaire.</p>
+
+      <ul style="margin-top:12px;">
+        <li><strong>Outils avancés :</strong> Accès à des applications et ressources premium pour maximiser tes gains.</li>
+        <li><strong>Formations exclusives :</strong> Contenu supplémentaire réservé aux membres Premium.</li>
+        <li><strong>Support prioritaire :</strong> Assistance rapide et dédiée pour toutes tes questions.</li>
+      </ul>
+
+      <div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap">
+        <a class="btn-wa" href="https://wa.me/237657554642" target="_blank" rel="noopener">Devenir membre Premium</a>
+        <a class="btn-join" href="#top" onclick="scrollToId('top')">Retour en haut</a>
+      </div>
+    </section>
+    <style>
+/* Section principale */
+#preuves {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre et sous-texte */
+#preuves h2 {
+  text-align: center;
+  font-size: 26px;
+  color: #FF7A00; /* Orange */
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+#preuves p.muted {
+  text-align: center;
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+/* Galerie d'images (2x2) */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+/* Style des cadres d’image */
+.thumb {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* Image interne */
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Effet au survol (zoom léger) */
+.thumb:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive (pour mobile) */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr; /* 2 images par ligne */
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr; /* 1 image par ligne sur petit écran */
+  }
+  #preuves h2 {
+    font-size: 20px;
+  }
+}
+
+
+      </style>
+   <section class="card" id="preuves">
+    <h2>Preuves & Résultats de nos abonnés</h2>
+    <p class="muted">Découvre ici quelques résultats réels de nos abonnés 🔥 (images floutées pour confidentialité)</p>
+  
+    <div class="gallery">
+      <div class="thumb"><img src="om.jpg" alt="Preuve paiement abonné 1"></div>
+      <div class="thumb"><img src="preuve.jpg" alt="Preuve paiement abonné 2"></div>
+      <div class="thumb"><img src="fille.jpg" alt="Preuve paiement abonné 3"></div>
+      <div class="thumb"><img src="preuve4.jpg" alt="Preuve paiement abonné 4"></div>
+    </div>
+  </section>
+  
+      
+        <section class="card" id="promoteur" style="max-width:1100px;margin:18px auto;padding:20px;">
+            <h2 style="margin:0 0 8px 0">Promoteur</h2>
+            <p class="muted">Contact direct : clique sur WhatsApp pour parler au promoteur et démarrer l'onboarding personnalisé.</p>
+        
+            <div style="display:flex; gap:14px; align-items:center; margin-top:12px; flex-wrap:wrap">
+              <div style="width:160px; border-radius:12px; overflow:hidden; box-shadow:0 12px 30px rgba(11,18,32,0.06); ">
+                <img src="promoM.jpg" alt="Photo promoteur" style="width:100%; display:block; object-fit:cover" />
+              </div>
+        
+              <div style="flex:1">
+                <div style="font-size:16px; font-weight:800">Nom du Promoteur:Monsieur Richy</div>
+                <div class="muted" style="margin-top:6px">Formations + accompagnement personnalisé. Onboarding en direct pour les 10 premiers inscrits.</div>
+                <div style="margin-top:10px; display:flex; gap:10px;">
+                  <a class="btn-wa" href="https://wa.me/237657554642" target="_blank" rel="noopener">Contacter le promoteur</a>
+                  <button class="btn-join" onclick="openModal('imgProm','Promoteur — Contact direct')">Voir photo</button>
+                </div>
+              </div>
+            </div>
+          </section>
+</main>
+<footer>
+  &copy; 2025-2035 TrendStar Afrique. Tous droits réservés Monsieur Richy.
+</footer>
+<div class="modal" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <img id="modalImage" src="" alt="Agrandissement de l'image" />
+    <div class="modal-footer">
+      <button class="close-btn" onclick="closeModal()">Fermer</button>
+    </div>
+  </div>
+</div>
